@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import classNames from './utils/classNames';
 import { IoLocationOutline } from 'react-icons/io5';
@@ -7,6 +7,7 @@ import { MdOutlineMail, MdOutlineWatchLater } from 'react-icons/md';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import emailjs from '@emailjs/browser';
 
 const adult = [
   { number: 1 },
@@ -17,6 +18,25 @@ const adult = [
 ]
 
 const Map = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'service_6c5cpp8',
+       'service_6c5cpp8',
+        form.current,
+         'YOUR_PUBLIC_KEY')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
+
 
   const [value, setValue] = useState({
     startDate: null,
@@ -44,7 +64,7 @@ const Map = () => {
         </div>
 
         <div className=" sm:w-1/2">
-          <form className='flex flex-col lg:gap-0  text-base gap-y-2 sm:gap-y-4 justify-between' action="">
+          <form ref={form} onSubmit={sendEmail} className='flex flex-col lg:gap-0  text-base gap-y-2 sm:gap-y-4 justify-between' action="">
             <div className=' flex flex-col gap-2 w-full'>
               <label className=' block font-medium leading-6 text-gray-900 sm:text-lg text-sm' htmlFor="">Дати за настаняване и напускане</label>
               <Datepicker
@@ -184,7 +204,7 @@ const Map = () => {
                     type="text"
                     name="first-name"
                     id="first-name"
-                    autoComplete="given-name"
+                    autoComplete="off"
                     className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
@@ -199,27 +219,29 @@ const Map = () => {
                     type="text"
                     name="last-name"
                     id="last-name"
-                    autoComplete="family-name"
+                    autoComplete="off"
                     className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
               </div>
               <div className="">
-                <label htmlFor="Mail" className="block font-medium leading-6 text-gray-9 sm:text-lg text-sm">
-                  Mail
+                <label htmlFor="Mail" className="block font-medium leading-6 text-gray-900 sm:text-lg text-sm">
+                  Електронна поща
                 </label>
                 <div className="mt-2">
                   <input
                     type="email"
                     name="email"
                     id="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
+                    autoComplete="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
+                    className=" invalid:focus:border-red-500/20 invalid:border-red-300 invalid:focus:ring invalid:focus:ring-red-500/20 block w-full rounded-md bg-white py-2 pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed valid:focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
               </div>
               <div className="">
-                <label htmlFor="phone" className="block font-medium leading-6 text-gray-9 sm:text-lg text-sm">
+                <label htmlFor="phone" className="block font-medium leading-6 text-gray-900 sm:text-lg text-sm ">
                   Телефон
                 </label>
                 <div className="mt-2">
@@ -227,7 +249,9 @@ const Map = () => {
                     type="tel"
                     name="tel"
                     id="tel"
-                    autoComplete="tel"
+                    autoComplete="off"
+                    autocapitalize="off"
+                    pattern="[0-9]+"
                     className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
@@ -237,7 +261,7 @@ const Map = () => {
             </div>
 
             <div className="sm:mt-3">
-              <label htmlFor="phone" className="block font-medium leading-6 text-gray-9 sm:text-lg text-sm">
+              <label htmlFor="phone" className="block font-medium leading-6 text-gray-000 sm:text-lg text-sm">
                 Съобщение
               </label>
               <div className="mt-2">
@@ -251,107 +275,27 @@ const Map = () => {
                 />
               </div>
             </div>
-            {/* <div className='flex'>
-
-              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                Име
-              </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <input
-                  type="text"
-                  name="first-name"
-                  id="first-name"
-                  autoComplete="given-name"
-                  className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                />
-              </div>
-
-
-
-              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                Фамилия
-              </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <input
-                  type="text"
-                  name="first-name"
-                  id="first-name"
-                  autoComplete="given-name"
-                  className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                />
-              </div>
-              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                Email
-              </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <input
-                  type="text"
-                  name="first-name"
-                  id="first-name"
-                  autoComplete="given-name"
-                  className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                />
-              </div>
-              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                Telefon
-              </label>
-              <div className="mt-2 sm:col-span-2 sm:mt-0">
-                <input
-                  type="text"
-                  name="first-name"
-                  id="first-name"
-                  autoComplete="given-name"
-                  className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div> */}
-
-
-
-            <div className=" w-full sm:mt-3 flex justify-end">
+            {/* <div className=" w-full sm:mt-3 flex justify-end">
               <button
-                className="min-w-auto bg-blue-400 p-2 rounded-md hover:bg-blue-600  text-white font-semibold text-center text-sm ">Потвърди</button>
+                className="min-w-auto bg-blue-400 p-2 rounded-md hover:bg-blue-600  text-white font-semibold text-center text-sm ">Изпрати</button>
 
-            </div>
+            </div> */}
+            <div className="w-full sm:mt-3 flex justify-end">
+                
+                <div className="mt-2">
+                  <input
+                    value="Изпрати"
+                    type="submit"
+                    name="submit"
+                    id="submit"
+                    className="min-w-auto bg-blue-400 p-2 rounded-md hover:bg-blue-600  text-white font-semibold text-center text-sm " 
+                  />
+                </div>
+              </div>
           </form>
-
-
-
         </div>
 
-
-        {/* <div className='flex flex-col justify-between gap-3 w-1sm:text-lg'>
-          <div className="flex gap-4 ">
-            <IoLocationOutline className='w-5 h-5 shrink-0 mt-2 ' />
-            <a href='#map' className='font-title'> Семеен хотел Шарков
-              с.Огняново, 2947 с.Огняново ул. Иван Вазов 15</a>
-          </div>
-
-          <div className="flex gap-2 items-center">
-            <BsTelephone className='w-5 h-5 shrink-0' />
-            <a className='pl-2' href="tel:+359896035958">+359 89 603 5958</a>
-
-          </div>
-
-          <div className="flex gap-2 items-center">
-            <MdOutlineMail className='w-5 h-5 shrink-0' />
-            <a className='pl-2' href="mailto:hotelsharkov@abv.bg">hotelsharkov@abv.bg</a>
-          </div>
-
-          <div className="flex gap-2 items-center">
-            <MdOutlineWatchLater className='w-5 h-5 shrink-0' />
-            <p className='pl-2'> Понеделник — Петък 8:00 - 17:00</p>
-
-          </div>
-        </div> */}
-
       </div>
-
-
-      {/* <div className=' space-y-3 pt-10'>
-        <h3 className='text-gray-700 text-xl sm:text-2xl px-4 '>Как  да стигнете при нас  </h3>
-        <iframe className='w-full h-[300px] border-2  ' width="100%" height="600" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=bulgaria,%20ognqnovo,hotel%20Sharkov+(%D0%A1%D0%B5%D0%BC%D0%B5%D0%B5%D0%BD%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%A8%D0%B0%D1%80%D0%BA%D0%BE%D0%B2)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">distance maps</a></iframe>
-      </div> */}
 
     </div>
 

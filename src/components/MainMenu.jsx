@@ -9,7 +9,6 @@ const navigation = [
 
   { name: 'За нас', href: '#aboutus', current: false },
   { name: 'Стаи', href: '#rooms2', current: false },
-  // { name: 'Удобства', href: '/services', current: false },
   { name: 'Ресторант', href: '#resturant', current: false },
   { name: 'Галерия', href: '#gallery', current: false },
   { name: 'Контакти', href: '#map', current: false },
@@ -18,13 +17,13 @@ const navigation = [
 const MainMenu = ({ isVisible }) => {
   return (
     <Disclosure as="nav" className={classNames(
-      !isVisible ? "bg-white/60 backdrop-blur-xl text-gray-700 " : "", " fixed top-0 z-10 inset-x-0 transition-all ")}>
+      !isVisible ? "bg-white/60 backdrop-blur-xl text-gray-700 " : "", " fixed top-0 z-10 inset-x-0 transition-all h-24 ")}>
       {({ open }) => (
         <>
 
 
-          <div className={classNames(!open ? ' ' : '', " max-sm:px-0 ")}>
-            <div className=' bg-sky-600 w-full py-1 h-8'>
+          <div className={classNames(!open ? ' ' : '', " ")}>
+            <div className=' bg-sky-600 w-full flex items-center justify-center h-8'>
               <div className='text-center uppercase text-white text-sm font-medium space-x-2'>
                 <span className=''>Лято 2023</span>
                 <span className=''>Очакваме ви</span>
