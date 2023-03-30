@@ -62,7 +62,7 @@ const Resturant = () => {
         </div>
 
         <Tab.Group>
-          <Tab.List className=' scrollbar-hidden overflow-x-scroll mx-auto -mb-px flex flex-wrap sm:flex-nowrap  sm:space-x-8 border-b border-gray-200 max-sm:px-4 sm:text-xl  justify-between items-center text-left'>
+          <Tab.List className=' scrollbar-hidden overflow-x-scroll mx-auto -mb-px flex flex-wrap sm:flex-nowrap sm:space-x-8 border-b border-gray-200 max-sm:px-2 sm:text-xl  justify-between items-center text-left'>
 
             <Tab className="ui-selected:border-slate-800 ui-selected:text-slate-900 border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-600 active:border-gray-600 outline-none whitespace-nowrap py-4 px-1 border-b-2 font-medium w-1/3">Закуска</Tab>
             <Tab className="ui-selected:border-slate-800 ui-selected:text-slate-900 border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-600 active:border-gray-600 outline-none whitespace-nowrap py-4 px-1 border-b-2 font-medium w-1/3">Салати</Tab>
@@ -74,11 +74,11 @@ const Resturant = () => {
           </Tab.List>
 
           <Tab.Panels >
-            <Tab.Panel className='flex max:sm-px-2 gap-12  overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10' >
+            <Tab.Panel className='flex max:sm-px-2 gap-10  overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10' >
 
-              <div className="grid sm:grid-cols-2 sm:grid-rows-3  sm:gap-10 gap-6 w-full">
+              <div className="grid sm:grid-cols-2 sm:grid-rows-3 sm:gap-10 gap-6 w-full">
                 <div className="flex flex-col sm:gap-4 gap-2 ">
-                  <div className="flex justify-between gap-5 space-x-5 border-dashed border-gray-400 border-b py-2">
+                  <div className="flex justify-between gap-5 border-dashed border-gray-400 border-b py-2">
                     <h4 className="text-gray-700 sm:text-lg">Пържени филийки</h4>
                     <p className="sm:text-xl ">4 лв.</p>
                   </div>
@@ -130,7 +130,7 @@ const Resturant = () => {
 
 
             </Tab.Panel>
-            <Tab.Panel className='flex max-sm:px-6 gap-12 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10 ' >
+            <Tab.Panel className='flex max-sm:px-0 gap-10 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10 ' >
 
               <div className="grid sm:grid-cols-2 sm:grid-rows-3 sm:gap-10 gap-6 w-full">
                 <div className="flex flex-col sm:gap-4 gap-2 ">
@@ -141,7 +141,7 @@ const Resturant = () => {
                   <p className="text-gray-700 text-sm">айсберг, чери домати,пилешки гърди ,сос-Цезар  </p>
                 </div>
 
-                <div className="flex flex-col gap-4 ">
+                <div className="flex flex-col sm:gap-4 gap-2">
                   <div className="flex justify-between gap-5 space-x-5 border-b border-dashed border-gray-400 py-2">
                     <h4 className="text-gray-700 sm:text-lg">Шопска салата </h4>
                     <p className="sm:text-xl">8 лв.</p>
@@ -185,10 +185,10 @@ const Resturant = () => {
 
             </Tab.Panel>
 
-            <Tab.Panel className='flex max-sm:px-6 gap-12 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10' >
+            <Tab.Panel className='flex max-sm:px-0 gap-10 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10' >
 
               <div className="grid sm:grid-cols-2 sm:grid-rows-3 sm:gap-10 gap-6 w-full">
-                <div className="flex flex-col gap-4 ">
+                <div className="flex flex-col sm:gap-4 gap-2 ">
                   <div className="flex justify-between gap-5 space-x-5 border-b border-dashed border-gray-400 py-2">
                     <h4 className="text-gray-700 sm:text-lg">Плато с различни колбаси  </h4>
                     <p className="sm:text-xl">8 лв.</p>
@@ -240,7 +240,7 @@ const Resturant = () => {
 
             </Tab.Panel>
 
-            <Tab.Panel className='flex max-sm:px-6 gap-12 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10 ' >
+            <Tab.Panel className='flex max-sm:px-0 gap-10 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10 ' >
 
               <div className="grid sm:grid-cols-2 sm:grid-rows-3 sm:gap-10 gap-6 w-full">
                 <div className="flex flex-col sm:gap-4 gap-2 ">
@@ -295,7 +295,7 @@ const Resturant = () => {
 
             </Tab.Panel>
 
-            <Tab.Panel className='flex max-sm:px-6 gap-12 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10' >
+            <Tab.Panel className='flex max-sm:px-0 gap-10 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10' >
 
               <div className="grid sm:grid-cols-2 sm:grid-rows-3 sm:gap-10 gap-6 w-full">
                 <div className="flex flex-col sm:gap-4 gap-2 ">
@@ -344,6 +344,61 @@ const Resturant = () => {
                     <p className="sm:text-xl">8 лв.</p>
                   </div>
                   <p className="text-gray-700 text-sm">Каменица, Загорка, Ариана, Стела Артоа....  </p>
+                </div>
+
+              </div>
+
+            </Tab.Panel>
+
+            <Tab.Panel className='flex max-sm:px-0 gap-10 overflow-x-scroll scrollbar-hidden sm:overflow-hidden max-w-6xl mx-auto snap-center snap-x snap-mandatory sm:py-16 py-10 ' >
+
+              <div className="grid sm:grid-cols-2 sm:grid-rows-3 sm:gap-10 gap-6 w-full">
+                <div className="flex flex-col sm:gap-4 gap-2 ">
+                  <div className="flex justify-between gap-5 space-x-5 border-b border-dashed border-gray-400 py-2">
+                    <h4 className="text-gray-700 sm:text-lg ">Пилешко месо с гъби </h4>
+                    <p className="sm:text-xl">8 лв.</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">луканки, сирена, кашкавал </p>
+                </div>
+
+                <div className="flex flex-col sm:gap-4 gap-2 ">
+                  <div className="flex justify-between gap-5 space-x-5 border-b border-dashed border-gray-400 py-2">
+                    <h4 className="text-gray-700 sm:text-lg">Свинко с картофи</h4>
+                    <p className="sm:text-xl">8 лв.</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">домати,чушки, краставици, лук, сирене,магданоз   </p>
+                </div>
+
+                <div className="flex flex-col sm:gap-4 gap-2 ">
+                  <div className="flex justify-between gap-5 space-x-8 border-b border-dashed border-gray-400 py-2">
+                    <h4 className="text-gray-700 sm:text-lg">Пълнени чушки</h4>
+                    <p className="sm:text-xl">8 лв.</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">маруля, пресен лук,репички, краставици  </p>
+                </div>
+
+                <div className="flex flex-col sm:gap-4 gap-2">
+                  <div className="flex justify-between gap-5 space-x-8 border-b border-dashed border-gray-400 py-2">
+                    <h4 className="text-gray-700 sm:text-lg ">Риба</h4>
+                    <p className="sm:text-xl">8 лв.</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">айсберг, чери домати,пилешки гърди ,сос-Цезар  </p>
+                </div>
+
+                <div className="flex flex-col sm:gap-4 gap-2 ">
+                  <div className="flex justify-between gap-5 space-x-8 border-b border-dashed border-gray-400 py-2">
+                    <h4 className="text-gray-700 sm:text-lg">Пиле Фрикасе </h4>
+                    <p className="sm:text-xl">8 лв.</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">айсберг, чери домати,пилешки гърди ,сос-Цезар  </p>
+                </div>
+
+                <div className="flex flex-col sm:gap-4 gap-2 ">
+                  <div className="flex justify-between gap-5 space-x-8 border-b border-dashed border-gray-400 py-2">
+                    <h4 className="text-gray-700 sm:text-lg ">Скара</h4>
+                    <p className="sm:text-xl">8 лв.</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">айсберг, чери домати,пилешки гърди ,сос-Цезар  </p>
                 </div>
 
               </div>

@@ -8,6 +8,7 @@ import Datepicker from 'react-tailwindcss-datepicker';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import emailjs from '@emailjs/browser';
+import { useEffect } from 'react';
 
 const adult = [
   { number: 1 },
@@ -21,20 +22,47 @@ const Map = () => {
 
   const form = useRef();
 
+
+
+
   const sendEmail = (e) => {
     e.preventDefault();
-
+    setLoading(true)
     emailjs.sendForm(
-      'service_6c5cpp8',
-       'service_6c5cpp8',
-        form.current,
-         'YOUR_PUBLIC_KEY')
+      'service_dvsvb9t',
+      'template_6qy3d59',
+      form.current,
+      'a442zTguc6FdFdds9')
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
+        console.log("massage sent")
+        setLoading(false)
       }, (error) => {
-          console.log(error.text);
+        console.log(error.text);
       });
+    setValue({
+      startDate: null,
+      endDate: null
+    })
+    setAdults(adult[0]);
+    setChildren(adult[0])
+    setName()
+    setFamily()
+    setPhone()
+    setEmail()
+    document.getElementById("contact_form").reset()
   };
+
+  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [family, setFamily] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  // const [disable, setDisable] = useState(true)
+
+  // useEffect(() => {
+  //   (name && family && email && phone) ? setDisable(false) : setDisable(true);
+  // }, [name, family, email, phone]);
 
 
 
@@ -64,11 +92,13 @@ const Map = () => {
         </div>
 
         <div className=" sm:w-1/2">
-          <form ref={form} onSubmit={sendEmail} className='flex flex-col lg:gap-0  text-base gap-y-2 sm:gap-y-4 justify-between' action="">
+          <form id='contact_form' ref={form} onSubmit={sendEmail} className='flex flex-col lg:gap-0  text-base gap-y-2 sm:gap-y-4 justify-between' action="">
+            <input type="hidden" name="startDate" value={value.startDate} />
+            <input type="hidden" name="endDate" value={value.endDate} />
             <div className=' flex flex-col gap-2 w-full'>
               <label className=' block font-medium leading-6 text-gray-900 sm:text-lg text-sm' htmlFor="">Дати за настаняване и напускане</label>
               <Datepicker
-                inputClassName=" !py-2  !pl-3 !text-base border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 !text-black !font-normal "
+                inputClassName=" !py-2 !pl-3 !text-base border-gray-200 border focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 !text-black !font-normal"
                 showFooter={true}
                 placeholder={"дати"}
                 primaryColor={"sky"}
@@ -91,7 +121,9 @@ const Map = () => {
             <div className='flex justify-between gap-4 w-full sm:mt-4'>
               <div className="w-1/2 ">
                 <label className=' block font-medium leading-6 text-gray-900 sm:text-lg text-sm ' htmlFor="adults">Възрастни</label>
-                <Listbox value={adults} onChange={setAdults}>
+                <Listbox value={adults}
+                  name="adults"
+                  onChange={setAdults}>
                   <div className="relative mt-1">
                     <Listbox.Button className="relative w-full rounded-md bg-white py-2 pl-3 pr-10 text-left  border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 ">
                       <span className="block truncate">{adults.number}</span>
@@ -142,10 +174,10 @@ const Map = () => {
               </div>
 
               <div className="w-1/2 ">
-                <label className=' block font-medium leading-6 text-gray-9sm:text-lg text-sm' htmlFor="adults">Деца</label>
-                <Listbox value={children} onChange={setChildren}>
+                <label className=' block font-medium leading-6 text-gray-9 sm:text-lg text-sm' htmlFor="adults">Деца</label>
+                <Listbox value={children} name="children" onChange={setChildren}>
                   <div className="relative mt-1">
-                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 ">
+                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border  focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 ">
                       <span className="block truncate">{children.number}</span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <ChevronUpDownIcon
@@ -201,11 +233,15 @@ const Map = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
                     type="text"
-                    name="first-name"
-                    id="first-name"
+                    name="first_name"
+                    id="first_name"
                     autoComplete="off"
-                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
+                    value={name}
+                    onChange={event => setName(event.target.value)}
+
+                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border  focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
               </div>
@@ -216,11 +252,14 @@ const Map = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
                     type="text"
-                    name="last-name"
-                    id="last-name"
+                    name="last_name"
+                    id="last_name"
                     autoComplete="off"
-                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
+                    defaultValue={family}
+                    onChange={event => setFamily(event.target.value)}
+                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
               </div>
@@ -230,13 +269,16 @@ const Map = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
                     type="email"
-                    name="email"
+                    name="user_email"
                     id="email"
                     autoComplete="off"
                     autoCapitalize="off"
                     spellCheck="false"
-                    className=" invalid:focus:border-red-500/20 invalid:border-red-300 invalid:focus:ring invalid:focus:ring-red-500/20 block w-full rounded-md bg-white py-2 pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed valid:focus:border-sky-500/20 focus:ring-sky-500/20 "
+                    value={email}
+                    onChange={event => setEmail(event.target.value)}
+                    className=" invalid:focus:border-red-500/20 invalid:border-red-300 invalid:focus:ring invalid:focus:ring-red-500/20 block w-full rounded-md bg-white py-2 pl-3 pr-10 text-left border-gray-200 border focus:ring disabled:opacity-40 disabled:cursor-not-allowed valid:focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
               </div>
@@ -246,13 +288,16 @@ const Map = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
                     type="tel"
                     name="tel"
                     id="tel"
                     autoComplete="off"
-                    autocapitalize="off"
+                    autoCapitalize="off"
+                    value={phone}
+                    onChange={event => setPhone(event.target.value)}
                     pattern="[0-9]+"
-                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
+                    className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border  focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   />
                 </div>
               </div>
@@ -269,7 +314,7 @@ const Map = () => {
                   id="message"
                   name="message"
                   rows={4}
-                  className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border focus:sm:text-sm focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
+                  className="block w-full rounded-md bg-white py-2  pl-3 pr-10 text-left border-gray-200 border  focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-sky-500/20 focus:ring-sky-500/20 "
                   placeholder=""
                   defaultValue={''}
                 />
@@ -281,17 +326,32 @@ const Map = () => {
 
             </div> */}
             <div className="w-full sm:mt-3 flex justify-end">
-                
-                <div className="mt-2">
+
+              <div className="mt-2">
+                {loading ?
+                  <div className="w-48 bg-blue-400 p-2 rounded-md hover:bg-blue-600  text-white " >
+                    <svg class="animate-spin mx-auto h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </div>
+                  :
                   <input
-                    value="Изпрати"
+
+                    value="Изпрати запитване"
                     type="submit"
                     name="submit"
                     id="submit"
-                    className="min-w-auto bg-blue-400 p-2 rounded-md hover:bg-blue-600  text-white font-semibold text-center text-sm " 
+                    className="w-48 bg-blue-400 p-2 rounded-md hover:bg-blue-600  text-white font-semibold text-center text-sm"
+
                   />
-                </div>
+
+                }
+
+
+
               </div>
+            </div>
           </form>
         </div>
 
